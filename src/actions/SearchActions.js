@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import set from 'lodash/set';
+
 export const length = (x) => x.length;
 export const sum = (a, b) => a+b;
 export const indexesOf = (substr) => ({
@@ -37,9 +40,9 @@ export const searchRows = ({ searchString, state, initialRows=[] }) => {
 export const searchRow = ({ row, upperCaseSearchString, columns }) => {
   let flag = false;
   columns.map(({ accessor }) => {
-    const { anyIndexes, newRowValue } = checkForSearchTerm({ key: accessor, value: row[accessor], upperCaseSearchString });
+    const { anyIndexes, newRowValue } = checkForSearchTerm({ key: accessor, value: get(row, accessor), upperCaseSearchString });
     if(anyIndexes) flag = true;
-    row[accessor] = newRowValue;
+    set(row, accessor, newRowValue);
   });
   return { updatedRow: row, flag }
 };

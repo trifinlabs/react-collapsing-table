@@ -7,6 +7,7 @@
     "react": "^15.x.x || ^16.x.x"
   },
   "dependencies": {
+    "lodash": "^4.17.11",
     "react": "^16.1.0"
   },
   "scripts": {
