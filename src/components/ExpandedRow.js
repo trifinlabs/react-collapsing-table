@@ -1,12 +1,13 @@
 //React
 import React from 'react';
+import get from 'lodash/get';
 import { ExpandedRowPropType } from '../utils/propTypes';
 //Components
 
 const ExpandedRow = ({ row, columns, colspan, callbacks }) => {
     const listOfHiddenAttributes = columns.map(({ accessor, CustomComponent, label }) => {
         const content = CustomComponent === undefined
-            ? <span className="child-content" dangerouslySetInnerHTML={{ __html: row[accessor] }} />
+            ? <span className="child-content" dangerouslySetInnerHTML={{ __html: get(row, accessor) }} />
             : <span className="child-content">
                             <CustomComponent row={ row }
                                              accessor={ accessor }
